@@ -4,9 +4,14 @@ def validate_globle(score):
     exit
 
 def validate_connections(score):
+    validChars = ['🟨', '🟩', '🟦', '🟪']
+    rawScore = ''
     scoreNumber = 0
     scoreMult = 64
-    rawScore = ''.join(re.sub(r'[a-zA-Z#0123456789]', '', score[5]).splitlines()).replace(' ', '')
+    for char in score[5]:
+        if char in validChars:
+            rawScore += char
+    #rawScore = ''.join(re.sub(r'[a-zA-Z#0123456789]', '', score[5]).splitlines()).replace(' ', '')
 
     if len(rawScore) % 4 == 0:
         for char in range(len(rawScore)//4):
@@ -23,7 +28,7 @@ def validate_connections(score):
     else:
         print("Connections score is invalid.")
         return None
-    
+    print(f"Validated Connections score: {scoreNumber}")
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber]
 
 def validate_wordle(score):
