@@ -9,7 +9,6 @@ def validate_globle(score):
     scoreNumber = rawScore.index('🟩') + 1
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
-
 def validate_connections(score):
     validChars = ['🟨', '🟩', '🟦', '🟪']
     rawScore = ''
@@ -99,6 +98,7 @@ def validate_csv(file_path):
 def main():
     file_path = 'src_csv/2025-11-19_Leeds_Games_Scores.csv'
     validated = validate_csv(file_path)
-    print(validated)
+    for personList in validated:
+        print(f'{personList}')
 
 main()
