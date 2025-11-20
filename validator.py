@@ -7,7 +7,6 @@ def validate_globle(score):
         if char in validChars:
             rawScore += char
     scoreNumber = rawScore.index('🟩') + 1
-    print(f"Validated Globle score: {scoreNumber}")
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 
@@ -36,7 +35,6 @@ def validate_connections(score):
     else:
         print("Connections score is invalid.")
         return None
-    print(f"Validated Connections score: {scoreNumber}")
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_wordle(score):
@@ -54,7 +52,6 @@ def validate_wordle(score):
     else:
         print("Connections score is invalid.")
         return None
-    print(f"Validated Wordle score: {scoreNumber}")
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_strands(score):
@@ -64,7 +61,6 @@ def validate_strands(score):
         if char in validChars:
             rawScore += char
     scoreNumber = rawScore.count('💡')
-    print(f"Validated Strands score: {scoreNumber}")
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_pub(score):
@@ -103,5 +99,6 @@ def validate_csv(file_path):
 def main():
     file_path = 'src_csv/2025-11-19_Leeds_Games_Scores.csv'
     validated = validate_csv(file_path)
+    print(validated)
 
 main()
