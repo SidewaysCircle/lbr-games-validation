@@ -63,7 +63,14 @@ def validate_strands(score):
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_pub(score):
-    exit
+    validChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    rawScore = ''
+    for char in score[5]:
+        if char in validChars:
+            rawScore += char
+    print(len(rawScore))
+    scoreNumber = int(rawScore)
+    return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_csv(file_path):
     validatedScores = []
