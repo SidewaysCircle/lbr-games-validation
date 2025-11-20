@@ -1,7 +1,14 @@
 import os, sys, csv, re
 
 def validate_globle(score):
-    exit
+    validChars = ['🟥', '🟧', '🟨', '⬜', '🟩']
+    rawScore = ''
+    for char in score[5]:
+        if char in validChars:
+            rawScore += char
+    scoreNumber = rawScore.index('🟩') + 1
+    print(f"Validated Globle score: {scoreNumber}")
+    return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 
 def validate_connections(score):
@@ -51,7 +58,14 @@ def validate_wordle(score):
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_strands(score):
-    exit
+    validChars = ['💡', '🔵', '🟡']
+    rawScore = ''
+    for char in score[5]:
+        if char in validChars:
+            rawScore += char
+    scoreNumber = rawScore.count('💡')
+    print(f"Validated Strands score: {scoreNumber}")
+    return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_pub(score):
     exit
