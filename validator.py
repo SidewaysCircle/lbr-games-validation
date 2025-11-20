@@ -3,6 +3,7 @@ import os, sys, csv, re
 def validate_globle(score):
     exit
 
+
 def validate_connections(score):
     validChars = ['🟨', '🟩', '🟦', '🟪']
     rawScore = ''
@@ -29,10 +30,25 @@ def validate_connections(score):
         print("Connections score is invalid.")
         return None
     print(f"Validated Connections score: {scoreNumber}")
-    return [score[0], score[1], score[2], score[3], score[4], scoreNumber]
+    return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_wordle(score):
-    exit
+    validChars = ['⬛', '⬜', '🟨', '🟩']
+    rawScore = ''
+    scoreNumber = 7
+    for char in score[5]:
+        if char in validChars:
+            rawScore += char
+    if len(rawScore) % 5 == 0:
+        for char in range(len(rawScore)//5):
+            row = rawScore[char*5:(char*5)+5]
+            if row == '🟩🟩🟩🟩🟩':
+                scoreNumber = char+1
+    else:
+        print("Connections score is invalid.")
+        return None
+    print(f"Validated Wordle score: {scoreNumber}")
+    return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_strands(score):
     exit
@@ -46,7 +62,7 @@ def validate_csv(file_path):
         print(f"File {file_path} does not exist.")
         return False
 
-    with open(file_path, mode='r', newline='') as csvfile:
+    with open(file_path, mode='r', newline='', encoding='UTF-8') as csvfile:
         reader = csv.reader(csvfile)
         header = next(reader, None)
         if header is None:
@@ -71,7 +87,7 @@ def validate_csv(file_path):
 
 
 def main():
-    file_path = 'src_csv/2025-11-14_Leeds_Games_Scores.csv'
+    file_path = 'src_csv/2025-11-19_Leeds_Games_Scores.csv'
     validated = validate_csv(file_path)
 
 main()
