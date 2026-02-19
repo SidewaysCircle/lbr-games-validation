@@ -60,6 +60,8 @@ def validate_strands(score):
         if char in validChars:
             rawScore += char
     scoreNumber = rawScore.count('💡')
+    if rawScore.find('🟡') == 0:
+        scoreNumber -= 1
     return [score[0], score[1], score[2], score[3], score[4], scoreNumber, rawScore]
 
 def validate_pub(score):
